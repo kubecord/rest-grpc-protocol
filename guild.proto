@@ -9,6 +9,8 @@ import "voice_state.proto"
 import "channel.proto"
 import "presence_update.proto"
 
+import "user.proto"
+
 message Guild {
 	string id = 1;
 	string name = 2;
@@ -33,7 +35,7 @@ message Guild {
 	bool widjet_enabled = 21;
 	string widjet_channel_id = 22;
 	optional string system_channel_id = 23;
-	string joined_at = 24;
+	int64 joined_at = 24;
 	bool large = 25;
 	bool unavailable = 26;
 	int32 member_count = 27
@@ -45,4 +47,11 @@ message Guild {
 
 message Role {}
 
-message Member {}
+message Member {
+	User user = 1;
+	string nick = 2;
+	repeated Role roles = 3;
+	int64 joined_at = 4;
+	bool deaf = 5;
+	bool mute = 6;
+}

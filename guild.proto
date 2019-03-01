@@ -1,0 +1,66 @@
+/* 
+Snowflakes are being represented as strings due to how Discord handles them
+Read more info here: https://discordapp.com/developers/docs/reference#snowflakes
+*/
+
+// Not sure about these imports
+import "REST-Manager-Protocol/emoji.proto"
+import "REST-Manager-Protocol/voice_state.proto"
+import "REST-Manager-Protocol/channel.proto"
+import "REST-Manager-Protocol/presence_update.proto"
+
+import "REST-Manager-Protocol/user.proto"
+
+message Guild {
+	string id = 1;
+	string name = 2;
+	optional string icon = 3;
+	optional string splash = 4;
+	bool owner = 5;
+	string owner_id = 6;
+	int32 permissions = 7;
+	string region = 8;
+	optional string afk_channel_id = 9;
+	int32 afk_timeout = 10;
+	bool embed_enabled = 11;
+	string embed_channel_id = 12;
+	int32 verification_level = 13;
+	int32 default_message_notification = 14;
+	int32 explicit_content_filter = 15;
+	repeated Role roles = 16;
+	repeated REST-Manager-Protocol.Emoji emojis = 17;
+	repeated string features = 18;
+	int32 mfa_level = 19;
+	optional string application_id = 20;
+	bool widjet_enabled = 21;
+	string widjet_channel_id = 22;
+	optional string system_channel_id = 23;
+	int64 joined_at = 24;
+	bool large = 25;
+	bool unavailable = 26;
+	int32 member_count = 27
+	repeated REST-Manager-Protocol.VoiceState voice_states = 28;
+	repeated Member members = 29;
+	repeated REST-Manager-Protocol.Channel channels = 30;
+	repeated REST-Manager-Protocol.PresenceUpdate presences = 31;
+}
+
+message Role {
+	string id = 1;
+	string name = 2;
+	int32 color = 3;
+	bool hoist = 4;
+	int32 position = 5;
+	int32 permissions = 6;
+	bool managed = 7;
+	bool mentionable = 8;
+}
+
+message Member {
+	User user = 1;
+	string nick = 2;
+	repeated Role roles = 3;
+	int64 joined_at = 4;
+	bool deaf = 5;
+	bool mute = 6;
+}

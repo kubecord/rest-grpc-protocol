@@ -1,0 +1,48 @@
+/* 
+Snowflakes are being represented as strings due to how Discord handles them
+Read more info here: https://discordapp.com/developers/docs/reference#snowflakes
+*/
+
+// Not sure about these imports
+import "emoji.proto"
+import "voice_state.proto"
+import "channel.proto"
+import "presence_update.proto"
+
+message Guild {
+	string id = 1;
+	string name = 2;
+	optional string icon = 3;
+	optional string splash = 4;
+	bool owner = 5;
+	string owner_id = 6;
+	int32 permissions = 7;
+	string region = 8;
+	optional string afk_channel_id = 9;
+	int32 afk_timeout = 10;
+	bool embed_enabled = 11;
+	string embed_channel_id = 12;
+	int32 verification_level = 13;
+	int32 default_message_notification = 14;
+	int32 explicit_content_filter = 15;
+	repeated Role roles = 16;
+	repeated Emoji emojis = 17;
+	repeated string features = 18;
+	int32 mfa_level = 19;
+	optional string application_id = 20;
+	bool widjet_enabled = 21;
+	string widjet_channel_id = 22;
+	optional string system_channel_id = 23;
+	string joined_at = 24;
+	bool large = 25;
+	bool unavailable = 26;
+	int32 member_count = 27
+	repeated VoiceState voice_states = 28;
+	repeated Member members = 29;
+	repeated Channel channels = 30;
+	repeated PresenceUpdate presences = 31;
+}
+
+message Role {}
+
+message Member {}

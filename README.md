@@ -1,0 +1,1 @@
+# REST Manager Protocol Spec

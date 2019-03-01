@@ -1,0 +1,13 @@
+message User {
+  string id = 1;
+  string username = 2;
+  string discriminator = 3;
+  string avatar = 4;
+  bool bot = 5;
+  bool mfa_enabled = 6;
+  string locale = 7;
+  bool verified = 8;
+  string email = 9;
+  int32 flags = 10;
+  int32 premium_type = 11;
+}

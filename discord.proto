@@ -1,0 +1,4 @@
+service Discord {
+  rpc GetUser(user_id string) returns (User) {}
+  rpc ModifyCurrentUser(user User) returns (User) {}
+}

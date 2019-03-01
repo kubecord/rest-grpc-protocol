@@ -1,4 +1,4 @@
-/* 
+/*
 Snowflakes are being represented as strings due to how Discord handles them
 Read more info here: https://discordapp.com/developers/docs/reference#snowflakes
 */
@@ -9,7 +9,8 @@ import "voice_state.proto";
 import "channel.proto";
 import "presence_update.proto";
 
-import "user.proto";
+import "member.proto";
+import "role.proto";
 
 message Guild {
 	string id = 1;
@@ -43,24 +44,4 @@ message Guild {
 	repeated Member members = 29;
 	repeated Channel channels = 30;
 	repeated PresenceUpdate presences = 31;
-}
-
-message Role {
-	string id = 1;
-	string name = 2;
-	int32 color = 3;
-	bool hoist = 4;
-	int32 position = 5;
-	int32 permissions = 6;
-	bool managed = 7;
-	bool mentionable = 8;
-}
-
-message Member {
-	User user = 1;
-	string nick = 2;
-	repeated Role roles = 3;
-	int64 joined_at = 4;
-	bool deaf = 5;
-	bool mute = 6;
 }

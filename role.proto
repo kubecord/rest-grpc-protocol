@@ -1,0 +1,10 @@
+message Role {
+	string id = 1;
+	string name = 2;
+	int32 color = 3;
+	bool hoist = 4;
+	int32 position = 5;
+	int32 permissions = 6;
+	bool managed = 7;
+	bool mentionable = 8;
+}

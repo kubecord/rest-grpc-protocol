@@ -1,4 +1,11 @@
+import "guild.proto";
+import "user.proto";
+
 service Discord {
+  // User methods
   rpc GetUser(user_id string) returns (User) {}
   rpc ModifyCurrentUser(user User) returns (User) {}
+
+  // Guild methods
+  rpc GetGuild(guild_id string) return (Guild) {}
 }

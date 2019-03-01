@@ -4,12 +4,12 @@ Read more info here: https://discordapp.com/developers/docs/reference#snowflakes
 */
 
 // Not sure about these imports
-import "emoji.proto"
-import "voice_state.proto"
-import "channel.proto"
-import "presence_update.proto"
+import "REST-Manager-Protocol/emoji.proto"
+import "REST-Manager-Protocol/voice_state.proto"
+import "REST-Manager-Protocol/channel.proto"
+import "REST-Manager-Protocol/presence_update.proto"
 
-import "user.proto"
+import "REST-Manager-Protocol/user.proto"
 
 message Guild {
 	string id = 1;
@@ -28,7 +28,7 @@ message Guild {
 	int32 default_message_notification = 14;
 	int32 explicit_content_filter = 15;
 	repeated Role roles = 16;
-	repeated Emoji emojis = 17;
+	repeated REST-Manager-Protocol.Emoji emojis = 17;
 	repeated string features = 18;
 	int32 mfa_level = 19;
 	optional string application_id = 20;
@@ -39,10 +39,10 @@ message Guild {
 	bool large = 25;
 	bool unavailable = 26;
 	int32 member_count = 27
-	repeated VoiceState voice_states = 28;
+	repeated REST-Manager-Protocol.VoiceState voice_states = 28;
 	repeated Member members = 29;
-	repeated Channel channels = 30;
-	repeated PresenceUpdate presences = 31;
+	repeated REST-Manager-Protocol.Channel channels = 30;
+	repeated REST-Manager-Protocol.PresenceUpdate presences = 31;
 }
 
 message Role {

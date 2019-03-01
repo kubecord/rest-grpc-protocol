@@ -3,11 +3,11 @@ message User {
   string username = 2;
   string discriminator = 3;
   string avatar = 4;
-  bool bot = 5;
-  bool mfa_enabled = 6;
-  string locale = 7;
-  bool verified = 8;
-  string email = 9;
+  optional bool bot = 5;
+  optional bool mfa_enabled = 6;
+  optional string locale = 7;
+  optional bool verified = 8;
+  optional string email = 9;
   int32 flags = 10;
-  int32 premium_type = 11;
+  optional int32 premium_type = 11;
 }

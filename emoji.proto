@@ -1,0 +1,12 @@
+import "user.proto";
+import "role.proto";
+
+message Emoji {
+    string id = 1;
+    string name = 2;
+    repeated Role roles = 3;
+    optional User user = 4;
+    optional bool require_colons = 5;
+    optional bool managed = 6;
+    optional bool animated = 7;
+}

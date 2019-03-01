@@ -1,0 +1,53 @@
+import "user.proto";
+
+message PresenceUpdate {
+    User user = 1;
+    repeated string roles = 2;
+    Activity game = 3;
+    string guild_id = 4;
+    string status = 5;
+    repeated Activity activites = 6;
+}
+
+message Activity {
+    string name = 1;
+    int32 type = 2;
+    string url = 3;
+    optional Timestamps timestamps = 4;
+    optional string application_id = 5;
+    optional string details = 6;
+    optional string state = 7;
+    optional Party party = 8;
+    optional Assets assets = 9;
+    optional Secrets secrets = 10;
+    optional bool instance = 11;
+    optional int32 flags = 12;
+}
+
+message Timestamps {
+    int32 start = 1;
+    int32 end = 2;
+}
+
+message Party {
+    optional string id = 1;
+    optional PartySize size = 2;
+}
+
+message PartySize {
+    int32 current_size = 1;
+    int32 max_size = 2;
+}
+
+message Assets {
+    optional string large_image = 1;
+    optional string large_text = 2;
+    optional string small_image = 3;
+    optional string small_text = 4;
+}
+
+message Secrets {
+    optional string join = 1;
+    optional string spectate = 2;
+    optional string match = 3;
+}

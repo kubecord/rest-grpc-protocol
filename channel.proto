@@ -30,11 +30,11 @@ message PermissionOverwrites {
 
 enum message ChannelTypes {
     
-	uint32 GUILD_TEXT = 0;
-	uint32 DM = 1;
-	uint32 GUILD_VOICE = 2;
-	uint32 GROUP_DM = 3;
-	uint32 GUILD_CATEGORY = 4;
-	uint32 GUILD_NEWS = 5;
-	uint32 GUILD_STORE = 4;
+    uint32 GUILD_TEXT = 0;
+    uint32 DM = 1;
+    uint32 GUILD_VOICE = 2;
+    uint32 GROUP_DM = 3;
+    uint32 GUILD_CATEGORY = 4;
+    uint32 GUILD_NEWS = 5;
+    uint32 GUILD_STORE = 6;
 }

@@ -1,0 +1,62 @@
+message EmbedThumbnail {
+  optional string url = 1;
+  optional string proxy_url = 2;
+  optional int32 height = 3;
+  optional int32 width = 4;
+}
+
+message EmbedVideo {
+  optional string url = 1;
+  optional int32 height = 2;
+  optional int32 width = 3;
+}
+
+message EmbedImage {
+  optional string url = 1;
+  optional string proxy_url = 2;
+  optional int32 height = 3;
+  optional int32 width = 4;
+}
+
+message EmbedProvider {
+  optional string name = 1;
+  optional string url = 2;
+}
+
+message EmbedAuthor {
+  optional string name = 1;
+  optional string url = 2;
+  optional string icon_url = 3;
+  optional string proxy_icon_url = 4;
+}
+
+message EmbedFooter {
+  string text = 1;
+  optional string icon_url = 2;
+  optional string proxy_icon_url = 3;
+}
+
+message EmbedField {
+  string id = 1;
+  string filename = 2;
+  int32 size = 3;
+  string url = 4;
+  string proxy_url = 5;
+  optional int32 height = 6;
+  optional int32 width = 7;
+}
+
+message Embed {
+  optional string title = 1;
+  optional string type = 2;
+  optional string description = 3;
+  optional string url = 4;
+  optional string timestamp = 5;
+  optional int32 color = 6;
+  optional EmbedFooter footer = 7;
+  optional EmbedImage image = 8;
+  optional EmbedThumbnail thumbnail = 9;
+  optional EmbedProvider provider = 10;
+  optional EmbedAuthor author = 11;
+  repeated EmbedField fields = 12;
+}

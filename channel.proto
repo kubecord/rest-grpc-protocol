@@ -1,3 +1,4 @@
+import "embed.proto";
 import "user.proto";
 
 message Channel {
@@ -21,6 +22,33 @@ message Channel {
     optional string last_pin_timestamp = 18;
 }
 
+message Attachment {
+    string id = 1;
+    string filename = 2;
+    int32 size = 3;
+    string url = 4;
+    string proxy_url = 5;
+    optional int32 height = 6;
+    optional int32 width = 7;
+}
+
+message Message {
+    string id = 1;
+    string channel_id = 2;
+    optional string guild_id = 3;
+    User author = 4;
+    optional Member member = 5;
+    string content = 6;
+    string timestamp = 7;
+    string edited_timestamp = 8;
+    bool tts = 9;
+    bool mention_everyone = 10;
+    repeated User mentions = 11;
+    repeated string mention_roles = 12;
+    repeated Attachment attachments = 13;
+    repeated Embed embeds = 14;
+}
+
 message PermissionOverwrites {
     string id = 1;
     string type = 2;
@@ -38,3 +66,5 @@ enum message ChannelTypes {
     uint32 GUILD_NEWS = 5;
     uint32 GUILD_STORE = 6;
 }
+
+

@@ -1,25 +1,29 @@
+syntax = "proto3";
+
 import "embed.proto";
+import "emoji.proto";
+import "member.proto";
 import "user.proto";
 
 message Channel {
     string id = 1;
-    optional string name = 2;
+    string name = 2;
     int32 type = 3;
-    optional string guild_id = 4;
-    optional int32 position = 5;
+    string guild_id = 4;
+    int32 position = 5;
     repeated PermissionOverwrites permission_overwrites = 6;
-    optional string topic = 7;
-    optional bool nsfw = 8;
-    optional string last_message_id = 9;
-    optional int32 bitrate = 10;
-    optional int32 user_limit = 11;
-    optional int32 rate_limit_per_user = 12;
+    string topic = 7;
+    bool nsfw = 8;
+    string last_message_id = 9;
+    int32 bitrate = 10;
+    int32 user_limit = 11;
+    int32 rate_limit_per_user = 12;
     repeated User recipients = 13;
-    optional string icon = 14;
-    optional string owner_id = 15;
-    optional string application_id = 16;
-    optional string parent_id = 17;
-    optional string last_pin_timestamp = 18;
+    string icon = 14;
+    string owner_id = 15;
+    string application_id = 16;
+    string parent_id = 17;
+    string last_pin_timestamp = 18;
 }
 
 message Attachment {
@@ -28,16 +32,35 @@ message Attachment {
     int32 size = 3;
     string url = 4;
     string proxy_url = 5;
-    optional int32 height = 6;
-    optional int32 width = 7;
+    int32 height = 6;
+    int32 width = 7;
+}
+
+message Reaction {
+    int32 count = 1;
+    bool me = 2;
+    Emoji emoji = 3;
+}
+
+message MessageActivity {
+    int32 type = 1;
+    string party_id = 2;
+}
+
+message MessageApplication {
+    string id = 1;
+    string cover_image = 2;
+    string description = 3;
+    string icon = 4;
+    string name = 5;
 }
 
 message Message {
     string id = 1;
     string channel_id = 2;
-    optional string guild_id = 3;
+    string guild_id = 3;
     User author = 4;
-    optional Member member = 5;
+    Member member = 5;
     string content = 6;
     string timestamp = 7;
     string edited_timestamp = 8;
@@ -47,6 +70,13 @@ message Message {
     repeated string mention_roles = 12;
     repeated Attachment attachments = 13;
     repeated Embed embeds = 14;
+    repeated Reaction reactions = 15;
+    string nonce = 16;
+    bool pinned = 17;
+    string webhook_id = 18;
+    int32 type = 19;
+    MessageActivity activity = 20;
+    MessageApplication application = 21;
 }
 
 message PermissionOverwrites {
@@ -56,15 +86,14 @@ message PermissionOverwrites {
     int32 deny = 4;
 }
 
-enum message ChannelTypes {
-    
-    uint32 GUILD_TEXT = 0;
-    uint32 DM = 1;
-    uint32 GUILD_VOICE = 2;
-    uint32 GROUP_DM = 3;
-    uint32 GUILD_CATEGORY = 4;
-    uint32 GUILD_NEWS = 5;
-    uint32 GUILD_STORE = 6;
+enum ChannelTypes {
+    GUILD_TEXT = 0;
+    DM = 1;
+    GUILD_VOICE = 2;
+    GROUP_DM = 3;
+    GUILD_CATEGORY = 4;
+    GUILD_NEWS = 5;
+    GUILD_STORE = 6;
 }
 
 

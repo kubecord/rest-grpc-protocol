@@ -1,11 +1,22 @@
+syntax = "proto3";
+
+import "channel.proto";
 import "guild.proto";
 import "user.proto";
 
+message SnowflakeInput {
+  string id = 1;
+}
+
 service Discord {
+  // Channel methods
+  rpc GetChannel(SnowflakeInput) returns (Channel);
+
+
   // User methods
-  rpc GetUser(user_id string) returns (User) {}
-  rpc ModifyCurrentUser(user User) returns (User) {}
+  rpc GetUser(SnowflakeInput) returns (User);
+  rpc ModifyCurrentUser(User) returns (User);
 
   // Guild methods
-  rpc GetGuild(guild_id string) return (Guild) {}
+  rpc GetGuild(SnowflakeInput) returns (Guild);
 }

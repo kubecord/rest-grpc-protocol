@@ -3,6 +3,8 @@ Snowflakes are being represented as strings due to how Discord handles them
 Read more info here: https://discordapp.com/developers/docs/reference#snowflakes
 */
 
+syntax = "proto3";
+
 // Not sure about these imports
 import "emoji.proto";
 import "voice_state.proto";
@@ -15,13 +17,13 @@ import "role.proto";
 message Guild {
 	string id = 1;
 	string name = 2;
-	optional string icon = 3;
-	optional string splash = 4;
+	string icon = 3;
+	string splash = 4;
 	bool owner = 5;
 	string owner_id = 6;
 	int32 permissions = 7;
 	string region = 8;
-	optional string afk_channel_id = 9;
+	string afk_channel_id = 9;
 	int32 afk_timeout = 10;
 	bool embed_enabled = 11;
 	string embed_channel_id = 12;
@@ -32,10 +34,10 @@ message Guild {
 	repeated Emoji emojis = 17;
 	repeated string features = 18;
 	int32 mfa_level = 19;
-	optional string application_id = 20;
+	string application_id = 20;
 	bool widjet_enabled = 21;
 	string widjet_channel_id = 22;
-	optional string system_channel_id = 23;
+	string system_channel_id = 23;
 	int64 joined_at = 24;
 	bool large = 25;
 	bool unavailable = 26;

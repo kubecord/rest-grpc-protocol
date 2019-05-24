@@ -13,7 +13,7 @@ message WebhookInput {
   string token = 2;
 }
 
-message ReactionInput = {
+message ReactionInput {
   string name = 1;
 }
 

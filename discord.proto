@@ -51,7 +51,12 @@ service Discord {
   rpc DeleteChannelPermission(SnowflakeInput, SnowflakeInput) returns (NullValue);
   // POST /channels/{channel.id}/typing
   rpc SendTypingInChannel(SnowflakeInput) returns (NullValue);
+  // GET /channels/{channel.id}/pins
   rpc GetChannelPins(SnowflakeInput) returns (ReturnMessages);
+  // PUT /channels/{channel.id}/pins/{message.id}
+  rpc PinMessageInChannel(SnowflakeInput, SnowflakeInput) returns (NullValue);
+  // DELETE /channels/{channel.id}/pins/{message.id}
+  rpc UnpinMessageFromChannel(SnowflakeInput, SnowflakeInput) returns (NullValue);
 
   // Emoji methods
   rpc GetGuildEmojis(SnowflakeInput) returns (ReturnEmojis);

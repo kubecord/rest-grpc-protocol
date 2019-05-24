@@ -1,22 +1,90 @@
 syntax = "proto3";
 
 import "channel.proto";
+import "emoji.proto";
 import "guild.proto";
+import "member.proto";
+import "options.proto";
+import "results.proto";
+import "role.proto";
 import "user.proto";
+import "webhook.proto";
 
-message SnowflakeInput {
-  string id = 1;
-}
 
 service Discord {
   // Channel methods
+  // GET /channels/{channel.id}
   rpc GetChannel(SnowflakeInput) returns (Channel);
+  // PATCH /channels/{channel.id}
+  rpc PatchChannel(Channel) returns (Channel);
+  // DELETE /channels/{channel.id}
+  rpc DeleteChannel(SnowflakeInput) returns (Channel);
+  // GET /channels/{channel.id}/messages
+  rpc GetChannelMessages(SnowflakeInput) returns (ReturnMessages);
+  // GET /channels/{channel.id}/messages/{message.id}
+  rpc GetChannelMessage(SnowflakeInput, SnowflakeInput) returns (Message);
+  // POST /channels/{channel.id}/messages
+  rpc CreateMessage(SnowflakeInput, MessageInput) returns (Message);
+  // PUT /channels/{channel.id}/messages/{message.id}/reactions/{emoji}/@me
+  rpc ReactToMessage(SnowflakeInput, SnowflakeInput, ReactionInput) returns (NullValue);
+  // DELETE /channels/{channel.id}/messages/{message.id}/reactions/{emoji}/@me
+  rpc RemoveSelfReactionFromMessage(SnowflakeInput, SnowflakeInput, ReactionInput) returns (NullValue);
+  // DELETE /channels/{channel.id}/messages/{message.id}/reactions/{emoji}/{user.id}
+  rpc RemoveUserReactionFromMessage(SnowflakeInput, SnowflakeInput, ReactionInput, SnowflakeInput) returns (NullValue);
+  // GET /channels/{channel.id}/messages/{message.id}/reactions/{emoji}
+  rpc GetUsersForReaction(SnowflakeInput, SnowflakeInput, ReactionQuery) returns (ReturnUsers);
+  // DELETE /channels/{channel.id}/messages/{message.id}/reactions
+  rpc DeleteAllReactionsFromMessage(SnowflakeInput, SnowflakeInput) returns (NullValue);
+  // PATCH /channels/{channel.id}/messages/{message.id}
+  rpc EditMessage(SnowflakeInput, SnowflakeInput, MessageInput) returns (NullValue);
+  // DELETE /channels/{channel.id}/messages/{message.id}
+  rpc DeleteMessage(SnowflakeInput, SnowflakeInput) returns (Message);
+  // POST /channels/{channel.id}/messages/bulk-delete
+  rpc BulkDeleteMessages(SnowflakeInput, BulkDeleteOptions) returns (ReturnMessages);
+  // PUT /channels/{channel.id}/permissions/{overwrite.id}
+  rpc EditChannelPermissions(SnowflakeInput, SnowflakeInput, OverwriteOptions) returns (NullValue);
+  // GET /channels/{channel.id}/invites
+  rpc GetChannelInvites(SnowflakeInput) returns (ReturnInvites);
+  // POST /channels/{channel.id}/invites
+  rpc CreateChannelInvite(SnowflakeInput, InviteOptions) returns (Invite);
+  // DELETE /channels/{channel.id}/permissions/{overwrite.id}
+  rpc DeleteChannelPermission(SnowflakeInput, SnowflakeInput) returns (NullValue);
+  // POST /channels/{channel.id}/typing
+  rpc SendTypingInChannel(SnowflakeInput) returns (NullValue);
+  rpc GetChannelPins(SnowflakeInput) returns (ReturnMessages);
 
+  // Emoji methods
+  rpc GetGuildEmojis(SnowflakeInput) returns (ReturnEmojis);
+  rpc GetGuildEmoji(SnowflakeInput, SnowflakeInput) returns (Emoji);
+
+  // Guild methods
+  rpc GetGuild(SnowflakeInput) returns (Guild);
+  rpc GetGuildChannels(SnowflakeInput) returns (ReturnChannels);
+  rpc GetGuildMember(SnowflakeInput, SnowflakeInput) returns (Member);
+  rpc GetGuildMembers(SnowflakeInput, GuildMemberQuery) returns (ReturnMembers);
+  rpc GetGuildBans(SnowflakeInput) returns (ReturnBanInfos);
+  rpc GetGuildBan(SnowflakeInput, SnowflakeInput) returns (BanInfo);
+  rpc GetGuildRoles(SnowflakeInput) returns (ReturnRoles);
+  rpc GetGuildPruneCount(SnowflakeInput, PruneCountQuery) returns (PruneCount);
+  rpc GetGuildRegions(SnowflakeInput) returns (ReturnVoiceRegions);
+  rpc GetGuildInvites(SnowflakeInput) returns (ReturnInvites);
+  rpc GetGuildIntegrations(SnowflakeInput) returns (ReturnGuildIntegrations);
+
+  // Invite
+  rpc GetInvite(InviteInput, InviteQuery) returns (Invite);
 
   // User methods
   rpc GetUser(SnowflakeInput) returns (User);
   rpc ModifyCurrentUser(User) returns (User);
 
-  // Guild methods
-  rpc GetGuild(SnowflakeInput) returns (Guild);
+  // Voice methods
+  // GET /voice/regions
+  rpc GetVoiceRegions() returns (ReturnVoiceRegions);
+
+  // Webhook methods
+  rpc GetChannelWebhooks(SnowflakeInput) returns (ReturnWebhooks);
+  rpc GetGuildWebhooks(SnowflakeInput) returns (ReturnWebhooks);
+  rpc GetWebhook(SnowflakeInput) returns (Webhook);
+  rpc GetWebhookWithToken(WebhookInput) returns (Webhook);
+
 }

@@ -5,45 +5,110 @@ Read more info here: https://discordapp.com/developers/docs/reference#snowflakes
 
 syntax = "proto3";
 
-// Not sure about these imports
-import "emoji.proto";
-import "voice_state.proto";
 import "channel.proto";
-import "presence_update.proto";
-
+import "emoji.proto";
 import "member.proto";
+import "presence_update.proto";
 import "role.proto";
+import "user.proto";
+import "voice_state.proto";
 
 message Guild {
-	string id = 1;
-	string name = 2;
-	string icon = 3;
-	string splash = 4;
-	bool owner = 5;
-	string owner_id = 6;
-	int32 permissions = 7;
-	string region = 8;
-	string afk_channel_id = 9;
-	int32 afk_timeout = 10;
-	bool embed_enabled = 11;
-	string embed_channel_id = 12;
-	int32 verification_level = 13;
-	int32 default_message_notification = 14;
-	int32 explicit_content_filter = 15;
-	repeated Role roles = 16;
-	repeated Emoji emojis = 17;
-	repeated string features = 18;
-	int32 mfa_level = 19;
-	string application_id = 20;
-	bool widjet_enabled = 21;
-	string widjet_channel_id = 22;
-	string system_channel_id = 23;
-	int64 joined_at = 24;
-	bool large = 25;
-	bool unavailable = 26;
-	int32 member_count = 27;
-	repeated VoiceState voice_states = 28;
-	repeated Member members = 29;
-	repeated Channel channels = 30;
-	repeated PresenceUpdate presences = 31;
+  string id = 1;
+  string name = 2;
+  string icon = 3;
+  string splash = 4;
+  bool owner = 5;
+  string owner_id = 6;
+  int32 permissions = 7;
+  string region = 8;
+  string afk_channel_id = 9;
+  int32 afk_timeout = 10;
+  bool embed_enabled = 11;
+  string embed_channel_id = 12;
+  VerificationLevel verification_level = 13;
+  MessageNotification default_message_notifications = 14;
+  ExplicitContentFilter explicit_content_filter = 15;
+  repeated Role roles = 16;
+  repeated Emoji emojis = 17;
+  repeated string features = 18;
+  MFALevel mfa_level = 19;
+  string application_id = 20;
+  bool widget_enabled = 21;
+  string widget_channel_id = 22;
+  string system_channel_id = 23;
+  string joined_at = 24;
+  bool large = 25;
+  bool unavailable = 26;
+  int32 member_count = 27;
+  repeated VoiceState voice_states = 28;
+  repeated Member members = 29;
+  repeated Channel channels = 30;
+  repeated PresenceUpdate presences = 31;
+  int32 max_presences = 32;
+  int32 max_members = 33;
+  string vanity_url_code = 34;
+  string description = 35;
+  string banner = 36;
+}
+
+message BanInfo {
+  string reason = 1;
+  User user = 2;
+}
+
+message PruneCount {
+  int32 pruned = 1;
+}
+
+message VoiceRegion {
+  string id = 1;
+  string name = 2;
+  bool vip = 3;
+  bool optimal = 4;
+  bool deprecated = 5;
+  bool custom = 6;
+}
+
+message GuildIntegration {
+  string id = 1;
+  string name = 2;
+  string type = 3;
+  bool enabled = 4;
+  bool syncing = 5;
+  string role_id = 6;
+  int32 expire_behavior = 7;
+  int32 expire_grace_period = 8;
+  User user = 9;
+  Account account = 10;
+  string synced_at = 11;
+}
+
+message Account {
+  string id = 1;
+  string name = 2;
+}
+
+enum VerificationLevel {
+  NONE = 0;
+  LOW = 1;
+  MEDIUM = 2;
+  HIGH = 3;
+  VERY_HIGH = 4;
+}
+
+enum MessageNotification {
+  ALL_MESSAGES = 0;
+  ONLY_MENTIONS = 1;
+}
+
+enum ExplicitContentFilter {
+  DISABLED = 0;
+  MEMBERS_WITHOUT_ROLES = 1;
+  ALL_MEMBERS = 2;
+}
+
+enum MFALevel {
+  NONE = 1;
+  ELEVATED = 2;
 }

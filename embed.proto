@@ -48,6 +48,12 @@ message EmbedField {
   int32 width = 7;
 }
 
+message EmbedVideo {
+  string url = 1;
+  int32 height = 2;
+  int32 width = 3;
+}
+
 message Embed {
   string title = 1;
   string type = 2;
@@ -58,7 +64,8 @@ message Embed {
   EmbedFooter footer = 7;
   EmbedImage image = 8;
   EmbedThumbnail thumbnail = 9;
-  EmbedProvider provider = 10;
-  EmbedAuthor author = 11;
-  repeated EmbedField fields = 12;
+  EmbedVideo video = 10;
+  EmbedProvider provider = 11;
+  EmbedAuthor author = 12;
+  repeated EmbedField fields = 13;
 }

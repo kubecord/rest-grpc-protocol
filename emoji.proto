@@ -1,12 +1,11 @@
 syntax = "proto3";
 
 import "user.proto";
-import "role.proto";
 
 message Emoji {
     string id = 1;
     string name = 2;
-    repeated Role roles = 3;
+    repeated string roles = 3;
     User user = 4;
     bool require_colons = 5;
     bool managed = 6;

@@ -1,0 +1,55 @@
+syntax = "proto3";
+
+message SnowflakeInput {
+  string id = 1;
+}
+
+message InviteInput {
+  string code = 1;
+}
+
+message WebhookInput {
+  string id = 1;
+  string token = 2;
+}
+
+message ReactionInput = {
+  string name = 1;
+}
+
+message ReactionQuery {
+  string emoji = 1;
+  string before = 2;
+  string after = 3;
+  int32 limit = 4;
+}
+
+message GuildMemberQuery {
+  int32 limit = 1;
+  string after = 2;
+}
+
+message PruneCountQuery {
+  int32 days = 1;
+}
+
+message InviteQuery {
+  bool with_counts = 1;
+}
+
+message OverwriteOptions {
+  int32 allow = 1;
+  int32 deny = 2;
+  string type = 3;
+}
+
+message BulkDeleteOptions {
+  repeated string ids = 1;
+}
+
+message InviteOptions {
+  int32 max_age = 1;
+  int32 max_uses = 2;
+  bool temporary = 3;
+  bool unique = 4;
+}

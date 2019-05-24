@@ -1,0 +1,50 @@
+syntax = "proto3";
+
+import "channel.proto";
+import "guild.proto";
+import "users.proto";
+import "webhook.proto";
+
+message ReturnMessages {
+	repeated Message messages = 1;
+}
+
+message ReturnUsers {
+	repeated User users = 1;
+}
+
+message ReturnInvites {
+	repeated Invite invites = 1;
+}
+
+message ReturnWebhooks {
+	repeated Webhook webhooks = 1;
+}
+
+message ReturnEmojis {
+	repeated Emoji emojis = 1;
+}
+
+message ReturnVoiceRegions {
+	repeated VoiceRegion voice_regions = 1;
+}
+
+message ReturnChannels {
+	repeated Channel channels = 1;
+}
+
+message ReturnMembers {
+	repeated Member members = 1;
+}
+
+message ReturnBanInfos {
+	repeated BanInfo ban_infos = 1;
+}
+
+message ReturnRoles {
+	repeated Role roles = 1;
+}
+
+message ReturnGuildIntegrations {
+	repeated GuildIntegration guild_integrations = 1;
+}

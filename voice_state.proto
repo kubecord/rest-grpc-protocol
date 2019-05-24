@@ -3,14 +3,14 @@ syntax = "proto3";
 import "member.proto";
 
 message VoiceState {
-    string guild_id = 1;
-    string channel_id = 2;
-    string user_id = 3;
-    Member member = 4;
-    string session_id = 5;
-    bool deaf = 6;
-    bool mute = 7;
-    bool self_deaf = 8;
-    bool self_mute = 9;
-    bool suppress = 10;
+  string guild_id = 1;
+  string channel_id = 2;
+  string user_id = 3;
+  Member member = 4;
+  string session_id = 5;
+  bool deaf = 6;
+  bool mute = 7;
+  bool self_deaf = 8;
+  bool self_mute = 9;
+  bool suppress = 10;
 }

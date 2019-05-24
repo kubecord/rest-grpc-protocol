@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+import "user.proto";
+
+message Webhook {
+	string id = 1;
+	string guild_id = 2;
+	string channel_id = 3;
+	User user = 4;
+	string name = 5;
+	string avatar = 6;
+	string token = 7;
+}

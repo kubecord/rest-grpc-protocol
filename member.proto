@@ -1,13 +1,12 @@
 syntax = "proto3";
 
 import "user.proto";
-import "role.proto";
 
 message Member {
 	User user = 1;
 	string nick = 2;
-	repeated Role roles = 3;
-	int64 joined_at = 4;
+	repeated string roles = 3;
+	string joined_at = 4;
 	bool deaf = 5;
 	bool mute = 6;
 }

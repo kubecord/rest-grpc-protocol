@@ -2,98 +2,146 @@ syntax = "proto3";
 
 import "embed.proto";
 import "emoji.proto";
+import "guild.proto";
 import "member.proto";
 import "user.proto";
 
 message Channel {
-    string id = 1;
-    string name = 2;
-    int32 type = 3;
-    string guild_id = 4;
-    int32 position = 5;
-    repeated PermissionOverwrites permission_overwrites = 6;
-    string topic = 7;
-    bool nsfw = 8;
-    string last_message_id = 9;
-    int32 bitrate = 10;
-    int32 user_limit = 11;
-    int32 rate_limit_per_user = 12;
-    repeated User recipients = 13;
-    string icon = 14;
-    string owner_id = 15;
-    string application_id = 16;
-    string parent_id = 17;
-    string last_pin_timestamp = 18;
+  string id = 1;
+  ChannelType type = 2;
+  string guild_id = 3;
+  int32 position = 4;
+  repeated PermissionOverwrites permission_overwrites = 5;
+  string name = 6;
+  string topic = 7;
+  bool nsfw = 8;
+  string last_message_id = 9;
+  int32 bitrate = 10;
+  int32 user_limit = 11;
+  int32 rate_limit_per_user = 12;
+  repeated User recipients = 13;
+  string icon = 14;
+  string owner_id = 15;
+  string application_id = 16;
+  string parent_id = 17;
+  string last_pin_timestamp = 18;
 }
 
 message Attachment {
-    string id = 1;
-    string filename = 2;
-    int32 size = 3;
-    string url = 4;
-    string proxy_url = 5;
-    int32 height = 6;
-    int32 width = 7;
+  string id = 1;
+  string filename = 2;
+  int32 size = 3;
+  string url = 4;
+  string proxy_url = 5;
+  int32 height = 6;
+  int32 width = 7;
 }
 
 message Reaction {
-    int32 count = 1;
-    bool me = 2;
-    Emoji emoji = 3;
+  int32 count = 1;
+  bool me = 2;
+  Emoji emoji = 3;
 }
 
 message MessageActivity {
-    int32 type = 1;
-    string party_id = 2;
+  MessageActivityType type = 1;
+  string party_id = 2;
 }
 
 message MessageApplication {
-    string id = 1;
-    string cover_image = 2;
-    string description = 3;
-    string icon = 4;
-    string name = 5;
+  string id = 1;
+  string cover_image = 2;
+  string description = 3;
+  string icon = 4;
+  string name = 5;
 }
 
 message Message {
-    string id = 1;
-    string channel_id = 2;
-    string guild_id = 3;
-    User author = 4;
-    Member member = 5;
-    string content = 6;
-    string timestamp = 7;
-    string edited_timestamp = 8;
-    bool tts = 9;
-    bool mention_everyone = 10;
-    repeated User mentions = 11;
-    repeated string mention_roles = 12;
-    repeated Attachment attachments = 13;
-    repeated Embed embeds = 14;
-    repeated Reaction reactions = 15;
-    string nonce = 16;
-    bool pinned = 17;
-    string webhook_id = 18;
-    int32 type = 19;
-    MessageActivity activity = 20;
-    MessageApplication application = 21;
+  string id = 1;
+  string channel_id = 2;
+  string guild_id = 3;
+  User author = 4;
+  Member member = 5;
+  string content = 6;
+  string timestamp = 7;
+  string edited_timestamp = 8;
+  bool tts = 9;
+  bool mention_everyone = 10;
+  repeated User mentions = 11;
+  repeated string mention_roles = 12;
+  repeated Attachment attachments = 13;
+  repeated Embed embeds = 14;
+  repeated Reaction reactions = 15;
+  string nonce = 16;
+  bool pinned = 17;
+  string webhook_id = 18;
+  MessageType type = 19;
+  MessageActivity activity = 20;
+  MessageApplication application = 21;
+}
+
+message MessageInput {
+  string content = 1;
+  string nonce = 2;
+  bool tts = 3;
+  repeated File file = 4;
+  Embed embed = 5;
+}
+
+message File {
+  string name = 1;
+  string content_type = 2;
+  string data = 3;
 }
 
 message PermissionOverwrites {
-    string id = 1;
-    string type = 2;
-    int32 allow = 3;
-    int32 deny = 4;
+  string id = 1;
+  string type = 2;
+  int32 allow = 3;
+  int32 deny = 4;
 }
 
-enum ChannelTypes {
-    GUILD_TEXT = 0;
-    DM = 1;
-    GUILD_VOICE = 2;
-    GROUP_DM = 3;
-    GUILD_CATEGORY = 4;
-    GUILD_NEWS = 5;
-    GUILD_STORE = 6;
+message Invite {
+  string code = 1;
+  Guild guild = 2;
+  Channel channel = 3;
+  User target_user = 4;
+  int32 target_user_type = 5;
+  int32 approximate_presence_count = 6;
+  int32 approximate_member_count = 7;
+  User inviter = 8;
+  int32 uses = 9;
+  int32 max_uses = 10;
+  int32 max_age = 11;
+  bool temporary = 12;
+  string created_at = 13;
+  bool revoked = 14;
 }
 
+enum ChannelType {
+  GUILD_TEXT = 0;
+  DM = 1;
+  GUILD_VOICE = 2;
+  GROUP_DM = 3;
+  GUILD_CATEGORY = 4;
+  GUILD_NEWS = 5;
+  GUILD_STORE = 6;
+}
 
+enum MessageType {
+  DEFAULT = 0;
+  RECIPIENT_ADD = 1;
+  RECIPIENT_REMOVE = 2;
+  CALL = 3;
+  CHANNEL_NAME_CHANGE = 4;
+  CHANNEL_ICON_CHANGE = 5;
+  CHANNEL_PINNED_MESSAGE = 6;
+  GUILD_MEMBER_JOIN = 7;
+}
+
+enum MessageActivityType {
+  JOIN = 1;
+  SPECTATE = 2;
+  LISTEN = 3;
+  JOIN_REQUEST = 5;
+}

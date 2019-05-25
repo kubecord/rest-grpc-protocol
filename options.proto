@@ -1,6 +1,7 @@
 syntax = "proto3";
 
 import "channel.proto";
+import "embed.proto";
 import "guild.proto";
 
 message SnowflakeInput {
@@ -154,4 +155,37 @@ message IntegrationInput {
   int32 expire_behavior = 1;
   int32 expire_grace_period = 2;
   bool enable_emoticons = 3;
+}
+
+message UserInput {
+  string username = 1;
+  string avatar = 2;
+}
+
+message DMInput {
+  string recipient_id = 1;
+}
+
+message WebhookCreateInput {
+  string name = 1;
+  string avatar = 2;
+}
+
+message WebhookUpdateInput {
+  string name = 1;
+  string avatar = 2;
+  string channel_id = 3;
+}
+
+message WebhookMessageInput {
+  string content = 1;
+  string username = 2;
+  string avatar_url = 3;
+  bool tts = 4;
+  repeated File file = 5;
+  repeated Embed embeds = 6;
+}
+
+message WebhookMessageQuery {
+  bool wait = 1;
 }

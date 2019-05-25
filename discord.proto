@@ -143,22 +143,46 @@ service Discord {
   // TODO: Do we implement /guilds/{guild.id}/widget.png and /guilds/{guild.id}/embed.png ?
 
   // Invite
+  // GET /invites/{invite.code}
   rpc GetInvite(InviteInput, InviteQuery) returns (Invite);
+  // DELETE /invites/{invite.code}
+  rpc DeleteInvite(InviteInput) returns (Invite);
 
   // User methods
+  // GET /users/@me
+  rpc GetCurrentUser() returns (User);
+  // GET /users/{user.id}
   rpc GetUser(SnowflakeInput) returns (User);
-  rpc ModifyCurrentUser(User) returns (User);
+  // PATCH /users/@me
+  rpc ModifyCurrentUser(UserInput) returns (User);
   // DELETE /users/@me/guilds/{guild.id}
   rpc LeaveGuild(SnowflakeInput) returns (NullValue);
+  // POST /users/@me/channels
+  rpc CreateDMChannel(DMInput) returns (Channel);
 
   // Voice methods
   // GET /voice/regions
   rpc GetVoiceRegions() returns (ReturnVoiceRegions);
 
   // Webhook methods
+  // POST /channels/{channel.id}/webhooks
+  rpc CreateChannelWebhook(SnowflakeInput, WebhookCreateInput) returns (Webhook);
+  // GET /channels/{channel.id}/webhooks
   rpc GetChannelWebhooks(SnowflakeInput) returns (ReturnWebhooks);
+  // GET /guilds/{guild.id}/webhooks
   rpc GetGuildWebhooks(SnowflakeInput) returns (ReturnWebhooks);
+  // GET /webhooks/{webhook.id}
   rpc GetWebhook(SnowflakeInput) returns (Webhook);
+  // GET /webhooks/{webhook.id}/{webhook.token}
   rpc GetWebhookWithToken(WebhookInput) returns (Webhook);
-
+  // PATCH /webhooks/{webhook.id}
+  rpc UpdateWebhook(SnowflakeInput, WebhookUpdateInput) returns (Webhook);
+  // PATCH /webhooks/{webhook.id}/{webhook.token}
+  rpc UpdateWebhookWithToken(SnowflakeInput, WebhookInput) returns (Webhook);
+  // DELETE /webhooks/{webhook.id}
+  rpc DeleteWebhook(SnowflakeInput) returns (NullValue);
+  // DELETE /webhooks/{webhook.id}/{webhook.token}
+  rpc DeleteWebhookWithToken(WebhookInput) returns (NullValue);
+  // POST /webhooks/{webhook.id}/{webhook.token}
+  rpc ExecuteWebhook(WebhookInput, WebhookMessageInput, WebhookMessageQuery) returns (Message);
 }

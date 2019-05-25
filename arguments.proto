@@ -1,0 +1,208 @@
+syntax = "proto3";
+
+import "channel.proto";
+import "guild.proto";
+import "options.proto";
+
+message GenericMessageArguments {
+	SnowflakeInput channel = 1;
+	SnowflakeInput message = 2;
+}
+
+message GenericPermissionsArguments {
+	SnowflakeInput channel = 1;
+	SnowflakeInput overwrite = 2;
+}
+
+message GenericEmojiArguments {
+	SnowflakeInput channel = 1;
+	SnowflakeInput emoji = 2;
+}
+
+message GenericUserArguments {
+	SnowflakeInput guild = 1;
+	SnowflakeInput user = 2;
+}
+
+message GenericRoleArguments {
+	SnowflakeInput guild = 1;
+	SnowflakeInput role = 2;
+}
+
+message GenericIntegrationsArguments {
+	SnowflakeInput guild = 1;
+	SnowflakeInput integration = 2;
+}
+
+message CreateMessageArguments {
+	SnowflakeInput channel = 1;
+	MessageInput message = 2;
+}
+
+message MessageReactionArguments {
+	SnowflakeInput channel = 1;
+	SnowflakeInput message = 2;
+	ReactionInput reaction = 3;
+}
+
+message MessageReactionRemoveFromUserArguments {
+	SnowflakeInput channel = 1;
+	SnowflakeInput message = 2;
+	ReactionInput reaction = 3;
+	SnowflakeInput user = 4;
+}
+
+message GetUsersForReactionArguments {
+	SnowflakeInput channel = 1;
+	SnowflakeInput message = 2;
+	ReactionQuery reaction = 3;
+}
+
+message EditMessageArguments {
+	SnowflakeInput channel = 1;
+	SnowflakeInput message = 2;
+	MessageInput updated = 3;
+}
+
+message BulkDeleteArguments {
+	SnowflakeInput channel = 1;
+	BulkDeleteOptions options = 2;
+}
+
+message EditChannelPermissionArguments {
+	SnowflakeInput channel = 1;
+	SnowflakeInput overwrite = 2;
+	OverwriteOptions updated = 3;
+}
+
+message CreateChannelInviteArguments {
+	SnowflakeInput channel = 1;
+	InviteOptions options = 2;
+}
+
+message CreateEmojiArguments {
+	SnowflakeInput guild = 1;
+	EmojiInput emoji = 2;
+}
+
+message UpdateEmojiArguments {
+	SnowflakeInput guild = 1;
+	SnowflakeInput emoji = 2;
+	EmojiUpdate updated = 3;
+}
+
+message UpdateGuildArguments {
+	SnowflakeInput guild = 1;
+	GuildUpdate update = 2;
+}
+
+message CreateChannelArguments {
+	SnowflakeInput guild = 1;
+	ChannelInput channel = 2;
+}
+
+message UpdateChannelPositionsArguments {
+	SnowflakeInput guild = 1;
+	repeated PositionInput channels = 2;
+}
+
+message GetGuildMemberArguments {
+	SnowflakeInput guild = 1;
+	GuildMemberQuery query = 2;
+}
+
+message PutMemberInGuildArguments {
+	SnowflakeInput guild = 1;
+	SnowflakeInput user = 2;
+	MemberAddInput member = 3;
+}
+
+message PatchMemberArguments {
+	SnowflakeInput guild = 1;
+	SnowflakeInput member = 2;
+	MemberInput updated = 3;
+}
+
+message UpdateCurrentUserNickArguments {
+	SnowflakeInput guild = 1;
+	NickInput nick = 2;
+}
+
+message MemberRoleArguments {
+	SnowflakeInput guild = 1;
+	SnowflakeInput member = 2;
+	SnowflakeInput role = 3;
+}
+
+message BanMemberArguments {
+	SnowflakeInput guild = 1;
+	SnowflakeInput member = 2;
+	BanQuery query = 3;
+}
+
+message CreateRoleArguments {
+	SnowflakeInput guild = 1;
+	RoleInput role = 2;
+}
+
+message UpdateRolePositionsArguments {
+	SnowflakeInput guild = 1;
+	repeated PositionInput roles = 2;
+}
+
+message UpdateRoleArguments {
+	SnowflakeInput guild = 1;
+	SnowflakeInput role = 2;
+	RoleInput updated = 3;
+}
+
+message PruneArguments {
+	SnowflakeInput guild = 1;
+	PruneCountQuery query = 2;
+}
+
+message CreateIntegrationArguments {
+	SnowflakeInput guild = 1;
+	IntegrationCreateInput integration = 2;
+}
+
+message UpdateIntegrationArguments {
+	SnowflakeInput guild = 1;
+	SnowflakeInput integration = 2;
+	IntegrationInput updated = 3;
+}
+
+message UpdateGuildEmbedArguments {
+	SnowflakeInput guild = 1;
+	GuildEmbed embed = 2;
+}
+
+message GetInviteArguments {
+	string code = 1;
+	bool with_counts = 2;
+}
+
+message CreateWebhookArguments {
+	SnowflakeInput channel = 1;
+	WebhookCreateInput webhook = 2;
+}
+
+message UpdateWebhookArguments {
+	SnowflakeInput webhook = 1;
+	WebhookUpdateInput updated = 2;
+}
+
+message UpdateWebhookWithTokenArguments {
+	WebhookInput webhook = 1;
+	WebhookCreateInput updated = 2;
+}
+
+message ExecuteWebhookArguments {
+	WebhookInput webhook = 1;
+	WebhookMessageInput message = 2;
+	WebhookMessageQuery query = 3;
+}
+
+message InviteInput {
+	string code = 1;
+}

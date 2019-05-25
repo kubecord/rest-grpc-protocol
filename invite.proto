@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+import "channel.proto";
+import "guild.proto";
+import "user.proto";
+
+message Invite {
+  string code = 1;
+  Guild guild = 2;
+  Channel channel = 3;
+  User target_user = 4;
+  int32 target_user_type = 5;
+  int32 approximate_presence_count = 6;
+  int32 approximate_member_count = 7;
+  User inviter = 8;
+  int32 uses = 9;
+  int32 max_uses = 10;
+  int32 max_age = 11;
+  bool temporary = 12;
+  string created_at = 13;
+  bool revoked = 14;
+}

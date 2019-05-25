@@ -2,7 +2,6 @@ syntax = "proto3";
 
 import "embed.proto";
 import "emoji.proto";
-import "guild.proto";
 import "member.proto";
 import "user.proto";
 
@@ -101,23 +100,6 @@ message PermissionOverwrites {
   int32 deny = 4;
 }
 
-message Invite {
-  string code = 1;
-  Guild guild = 2;
-  Channel channel = 3;
-  User target_user = 4;
-  int32 target_user_type = 5;
-  int32 approximate_presence_count = 6;
-  int32 approximate_member_count = 7;
-  User inviter = 8;
-  int32 uses = 9;
-  int32 max_uses = 10;
-  int32 max_age = 11;
-  bool temporary = 12;
-  string created_at = 13;
-  bool revoked = 14;
-}
-
 enum ChannelType {
   GUILD_TEXT = 0;
   DM = 1;
@@ -140,7 +122,7 @@ enum MessageType {
 }
 
 enum MessageActivityType {
-  UNKNOWN_SPECIAL_KUBECORD_DEFAULT = 0;
+  UNKNOWN_SPECIAL_KUBECORD_DEFAULT_CHANNEL = 0;
   JOIN = 1;
   SPECTATE = 2;
   LISTEN = 3;

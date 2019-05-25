@@ -1,15 +1,16 @@
 syntax = "proto3";
 
+import "arguments.proto";
 import "channel.proto";
 import "emoji.proto";
 import "guild.proto";
+import "invite.proto";
 import "member.proto";
 import "options.proto";
 import "results.proto";
 import "role.proto";
 import "user.proto";
 import "webhook.proto";
-
 
 service Discord {
   // Channel methods
@@ -22,103 +23,103 @@ service Discord {
   // GET /channels/{channel.id}/messages
   rpc GetChannelMessages(SnowflakeInput) returns (ReturnMessages);
   // GET /channels/{channel.id}/messages/{message.id}
-  rpc GetChannelMessage(SnowflakeInput, SnowflakeInput) returns (Message);
+  rpc GetChannelMessage(GenericMessageArguments) returns (Message);
   // POST /channels/{channel.id}/messages
-  rpc CreateMessage(SnowflakeInput, MessageInput) returns (Message);
+  rpc CreateMessage(CreateMessageArguments) returns (Message);
   // PUT /channels/{channel.id}/messages/{message.id}/reactions/{emoji}/@me
-  rpc ReactToMessage(SnowflakeInput, SnowflakeInput, ReactionInput) returns (NullValue);
+  rpc ReactToMessage(MessageReactionArguments) returns (Empty);
   // DELETE /channels/{channel.id}/messages/{message.id}/reactions/{emoji}/@me
-  rpc RemoveSelfReactionFromMessage(SnowflakeInput, SnowflakeInput, ReactionInput) returns (NullValue);
+  rpc RemoveSelfReactionFromMessage(MessageReactionArguments) returns (Empty);
   // DELETE /channels/{channel.id}/messages/{message.id}/reactions/{emoji}/{user.id}
-  rpc RemoveUserReactionFromMessage(SnowflakeInput, SnowflakeInput, ReactionInput, SnowflakeInput) returns (NullValue);
+  rpc RemoveUserReactionFromMessage(MessageReactionRemoveFromUserArguments) returns (Empty);
   // GET /channels/{channel.id}/messages/{message.id}/reactions/{emoji}
-  rpc GetUsersForReaction(SnowflakeInput, SnowflakeInput, ReactionQuery) returns (ReturnUsers);
+  rpc GetUsersForReaction(GetUsersForReactionArguments) returns (ReturnUsers);
   // DELETE /channels/{channel.id}/messages/{message.id}/reactions
-  rpc DeleteAllReactionsFromMessage(SnowflakeInput, SnowflakeInput) returns (NullValue);
+  rpc DeleteAllReactionsFromMessage(GenericMessageArguments) returns (Empty);
   // PATCH /channels/{channel.id}/messages/{message.id}
-  rpc EditMessage(SnowflakeInput, SnowflakeInput, MessageInput) returns (NullValue);
+  rpc EditMessage(EditMessageArguments) returns (Empty);
   // DELETE /channels/{channel.id}/messages/{message.id}
-  rpc DeleteMessage(SnowflakeInput, SnowflakeInput) returns (Message);
+  rpc DeleteMessage(GenericMessageArguments) returns (Message);
   // POST /channels/{channel.id}/messages/bulk-delete
-  rpc BulkDeleteMessages(SnowflakeInput, BulkDeleteOptions) returns (ReturnMessages);
+  rpc BulkDeleteMessages(BulkDeleteArguments) returns (ReturnMessages);
   // PUT /channels/{channel.id}/permissions/{overwrite.id}
-  rpc EditChannelPermissions(SnowflakeInput, SnowflakeInput, OverwriteOptions) returns (NullValue);
+  rpc EditChannelPermissions(EditChannelPermissionArguments) returns (Empty);
   // GET /channels/{channel.id}/invites
   rpc GetChannelInvites(SnowflakeInput) returns (ReturnInvites);
   // POST /channels/{channel.id}/invites
-  rpc CreateChannelInvite(SnowflakeInput, InviteOptions) returns (Invite);
+  rpc CreateChannelInvite(CreateChannelInviteArguments) returns (Invite);
   // DELETE /channels/{channel.id}/permissions/{overwrite.id}
-  rpc DeleteChannelPermission(SnowflakeInput, SnowflakeInput) returns (NullValue);
+  rpc DeleteChannelPermission(GenericPermissionsArguments) returns (Empty);
   // POST /channels/{channel.id}/typing
-  rpc SendTypingInChannel(SnowflakeInput) returns (NullValue);
+  rpc SendTypingInChannel(SnowflakeInput) returns (Empty);
   // GET /channels/{channel.id}/pins
   rpc GetChannelPins(SnowflakeInput) returns (ReturnMessages);
   // PUT /channels/{channel.id}/pins/{message.id}
-  rpc PinMessageInChannel(SnowflakeInput, SnowflakeInput) returns (NullValue);
+  rpc PinMessageInChannel(GenericMessageArguments) returns (Empty);
   // DELETE /channels/{channel.id}/pins/{message.id}
-  rpc UnpinMessageFromChannel(SnowflakeInput, SnowflakeInput) returns (NullValue);
+  rpc UnpinMessageFromChannel(GenericMessageArguments) returns (Empty);
 
   // Emoji methods
   // GET /guilds/{guild.id}/emojis
   rpc GetGuildEmojis(SnowflakeInput) returns (ReturnEmojis);
   // GET /guilds/{guild.id}/emojis/{emoji.id}
-  rpc GetGuildEmoji(SnowflakeInput, SnowflakeInput) returns (Emoji);
+  rpc GetGuildEmoji(GenericEmojiArguments) returns (Emoji);
   // POST /guilds/{guild.id}/emojis
-  rpc CreateGuildEmoji(SnowflakeInput, EmojiInput) returns (Emoji);
+  rpc CreateGuildEmoji(CreateEmojiArguments) returns (Emoji);
   // PATCH /guilds/{guild.id}/emojis/{emoji.id}
-  rpc UpdateGuildEmoji(SnowflakeInput, SnowflakeInput, EmojiUpdate) returns (Emoji);
+  rpc UpdateGuildEmoji(UpdateEmojiArguments) returns (Emoji);
   // DLEETE /guilds/{guild.id}/emojis/{emoji.id}
-  rpc DeleteGuildEmoji(SnowflakeInput, SnowflakeInput) returns (NullValue);
+  rpc DeleteGuildEmoji(GenericEmojiArguments) returns (Empty);
 
   // Guild methods
   // GET /guilds/{guild.id}
   rpc GetGuild(SnowflakeInput) returns (Guild);
   // PATCH /guilds/{guild.id}
-  rpc UpdateGuild(SnowflakeInput, GuildUpdate) returns (Guild);
+  rpc UpdateGuild(UpdateGuildArguments) returns (Guild);
   // GET /guilds/{guild.id}/channels
   rpc GetGuildChannels(SnowflakeInput) returns (ReturnChannels);
   // POST /guilds/{guild.id}/channels
-  rpc CreateGuildChannel(SnowflakeInput, ChannelInput) returns (Channel);
+  rpc CreateGuildChannel(CreateChannelArguments) returns (Channel);
   // PATCH /guilds/{guild.id}/channels
-  rpc UpdateChannelPositions(SnowflakeInput, ChannelPositionInput) returns (NullValue);
+  rpc UpdateChannelPositions(UpdateChannelPositionsArguments) returns (Empty);
   // GET /guilds/{guild.id}/members/{user.id}
-  rpc GetGuildMember(SnowflakeInput, SnowflakeInput) returns (Member);
+  rpc GetGuildMember(GenericUserArguments) returns (Member);
   // GET /guilds/{guild.id}/members
-  rpc GetGuildMembers(SnowflakeInput, GuildMemberQuery) returns (ReturnMembers);
-  // PUT /guilds/{guild.id}/members/{user.id} || Special route: Returns 201 with a Member if added or 204 NullValue otherwise
-  rpc PutMemberInGuild(SnowflakeInput, SnowflakeInput, MemberAddInput) returns (Member);
+  rpc GetGuildMembers(GetGuildMemberArguments) returns (ReturnMembers);
+  // PUT /guilds/{guild.id}/members/{user.id} || Special route: Returns 201 with a Member if added or 204 Empty otherwise
+  rpc PutMemberInGuild(PutMemberInGuildArguments) returns (Member);
   // PATCH /guilds/{guild.id}/members/{user.id}
-  rpc UpdateGuildMember(SnowflakeInput, SnowflakeInput, MemberInput) returns (NullValue);
+  rpc UpdateGuildMember(PatchMemberArguments) returns (Empty);
   // PATCH /guilds/{guild.id}/members/@me/nick
-  rpc UpdateCurrentUserNickname(SnowflakeInput, NickInput) returns (NickInput);
+  rpc UpdateCurrentUserNickname(UpdateCurrentUserNickArguments) returns (NickInput);
   // PUT /guilds/{guild.id}/members/{user.id}/roles/{role.id}
-  rpc AddRoleToGuildMember(SnowflakeInput, SnowflakeInput, SnowflakeInput) returns (NullValue);
+  rpc AddRoleToGuildMember(MemberRoleArguments) returns (Empty);
   // DELETE /guilds/{guild.id}/members/{user.id}/roles/{role.id}
-  rpc RemoveRoleFromGuildMember(SnowflakeInput, SnowflakeInput, SnowflakeInput) returns (NullValue);
+  rpc RemoveRoleFromGuildMember(MemberRoleArguments) returns (Empty);
   // DELETE /guilds/{guild.id}/members/{user.id}
-  rpc KickGuildMember(SnowflakeInput, SnowflakeInput) returns (NullValue);
+  rpc KickGuildMember(GenericUserArguments) returns (Empty);
   // GET /guilds/{guild.id}/bans
   rpc GetGuildBans(SnowflakeInput) returns (ReturnBanInfos);
   // GET /guilds/{guild.id}/bans/{user.id}
-  rpc GetGuildBan(SnowflakeInput, SnowflakeInput) returns (BanInfo);
+  rpc GetGuildBan(GenericUserArguments) returns (BanInfo);
   // PUT /guilds/{guild.id}/bans/{user.id}
-  rpc BanGuildMember(SnowflakeInput, SnowflakeInput, BanQuery) returns (NullValue);
+  rpc BanGuildMember(BanMemberArguments) returns (Empty);
   // DELETE /guilds/{guild.id}/bans/{user.id}
-  rpc UnbanGuildMember(SnowflakeInput, SnowflakeInput) returns (NullValue);
+  rpc UnbanGuildMember(GenericUserArguments) returns (Empty);
   // GET /guilds/{guild.id}/roles
   rpc GetGuildRoles(SnowflakeInput) returns (ReturnRoles);
   // POST /guilds/{guild.id}/roles
-  rpc CreateGuildRole(SnowflakeInput, RoleInput) returns (Role);
+  rpc CreateGuildRole(CreateRoleArguments) returns (Role);
   // PATCH /guilds/{guild.id}/roles
-  rpc UpdateRolePositions(SnowflakeInput, RolePositionInput) returns (NullValue);
+  rpc UpdateRolePositions(UpdateRolePositionsArguments) returns (Empty);
   // PATCH /guilds/{guild.id}/roles/{role.id}
-  rpc UpdateRole(SnowflakeInput, SnowflakeInput, RoleInput) returns (Role);
+  rpc UpdateRole(UpdateRoleArguments) returns (Role);
   // DELETE /guilds/{guild.id}/roles/{role.id}
-  rpc DeleteRole(SnowflakeInput, SnowflakeInput) returns (NullValue);
+  rpc DeleteRole(GenericRoleArguments) returns (Empty);
   // GET /guilds/{guild.id}/prune
-  rpc GetGuildPruneCount(SnowflakeInput, PruneCountQuery) returns (PruneCount);
+  rpc GetGuildPruneCount(PruneArguments) returns (PruneCount);
   // POST /guilds/{guild.id}/prune
-  rpc BeginGuildPrune(SnowflakeInput, PruneCountQuery) returns (PruneCount);
+  rpc BeginGuildPrune(PruneArguments) returns (PruneCount);
   // GET /guilds/{guild.id}/regions
   rpc GetGuildRegions(SnowflakeInput) returns (ReturnVoiceRegions);
   // GET /guilds/{guild.id}/invites
@@ -126,17 +127,17 @@ service Discord {
   // GET /guilds/{guild.id}/integrations
   rpc GetGuildIntegrations(SnowflakeInput) returns (ReturnGuildIntegrations);
   // POST /guilds/{guild.id}/integrations
-  rpc CreateGuildIntegration(SnowflakeInput, IntegrationCreateInput) returns (NullValue);
+  rpc CreateGuildIntegration(CreateIntegrationArguments) returns (Empty);
   // PATCH /guilds/{guild.id}/integrations/{integration.id}
-  rpc UpdateGuildIntegration(SnowflakeInput, IntegrationInput) returns (NullValue);
+  rpc UpdateGuildIntegration(UpdateIntegrationArguments) returns (Empty);
   // DELETE /guilds/{guild.id}/integrations/{integration.id}
-  rpc DeleteGuildIntegration(SnowflakeInput, SnowflakeInput) returns (NullValue);
+  rpc DeleteGuildIntegration(GenericIntegrationsArguments) returns (Empty);
   // POST /guilds/{guild.id}/integrations/{integration.id}/sync
-  rpc SyncGuildIntegration(SnowflakeInput, SnowflakeInput) returns (NullValue);
+  rpc SyncGuildIntegration(GenericIntegrationsArguments) returns (Empty);
   // GET /guilds/{guild.id}/embed
   rpc GetGuildEmbed(SnowflakeInput) returns (GuildEmbed);
   // PATCH /guilds/{guild.id}/embed
-  rpc UpdateGuildEmbed(SnowflakeInput, GuildEmbed) returns (GuildEmbed);
+  rpc UpdateGuildEmbed(UpdateGuildEmbedArguments) returns (GuildEmbed);
   // GET /guilds/{guild.id}/vanity-url
   rpc GetGuildVanityCode(SnowflakeInput) returns (ReturnVanityCode);
 
@@ -144,29 +145,29 @@ service Discord {
 
   // Invite
   // GET /invites/{invite.code}
-  rpc GetInvite(InviteInput, InviteQuery) returns (Invite);
+  rpc GetInvite(GetInviteArguments) returns (Invite);
   // DELETE /invites/{invite.code}
   rpc DeleteInvite(InviteInput) returns (Invite);
 
   // User methods
   // GET /users/@me
-  rpc GetCurrentUser() returns (User);
+  rpc GetCurrentUser(Empty) returns (User);
   // GET /users/{user.id}
   rpc GetUser(SnowflakeInput) returns (User);
   // PATCH /users/@me
   rpc ModifyCurrentUser(UserInput) returns (User);
   // DELETE /users/@me/guilds/{guild.id}
-  rpc LeaveGuild(SnowflakeInput) returns (NullValue);
+  rpc LeaveGuild(SnowflakeInput) returns (Empty);
   // POST /users/@me/channels
   rpc CreateDMChannel(DMInput) returns (Channel);
 
   // Voice methods
   // GET /voice/regions
-  rpc GetVoiceRegions() returns (ReturnVoiceRegions);
+  rpc GetVoiceRegions(Empty) returns (ReturnVoiceRegions);
 
   // Webhook methods
   // POST /channels/{channel.id}/webhooks
-  rpc CreateChannelWebhook(SnowflakeInput, WebhookCreateInput) returns (Webhook);
+  rpc CreateChannelWebhook(CreateWebhookArguments) returns (Webhook);
   // GET /channels/{channel.id}/webhooks
   rpc GetChannelWebhooks(SnowflakeInput) returns (ReturnWebhooks);
   // GET /guilds/{guild.id}/webhooks
@@ -176,13 +177,13 @@ service Discord {
   // GET /webhooks/{webhook.id}/{webhook.token}
   rpc GetWebhookWithToken(WebhookInput) returns (Webhook);
   // PATCH /webhooks/{webhook.id}
-  rpc UpdateWebhook(SnowflakeInput, WebhookUpdateInput) returns (Webhook);
+  rpc UpdateWebhook(UpdateWebhookArguments) returns (Webhook);
   // PATCH /webhooks/{webhook.id}/{webhook.token}
-  rpc UpdateWebhookWithToken(SnowflakeInput, WebhookInput) returns (Webhook);
+  rpc UpdateWebhookWithToken(UpdateWebhookWithTokenArguments) returns (Webhook);
   // DELETE /webhooks/{webhook.id}
-  rpc DeleteWebhook(SnowflakeInput) returns (NullValue);
+  rpc DeleteWebhook(SnowflakeInput) returns (Empty);
   // DELETE /webhooks/{webhook.id}/{webhook.token}
-  rpc DeleteWebhookWithToken(WebhookInput) returns (NullValue);
+  rpc DeleteWebhookWithToken(WebhookInput) returns (Empty);
   // POST /webhooks/{webhook.id}/{webhook.token}
-  rpc ExecuteWebhook(WebhookInput, WebhookMessageInput, WebhookMessageQuery) returns (Message);
+  rpc ExecuteWebhook(ExecuteWebhookArguments) returns (Message);
 }

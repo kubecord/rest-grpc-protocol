@@ -8,10 +8,6 @@ message SnowflakeInput {
   string id = 1;
 }
 
-message InviteInput {
-  string code = 1;
-}
-
 message WebhookInput {
   string id = 1;
   string token = 2;
@@ -36,10 +32,6 @@ message GuildMemberQuery {
 message PruneCountQuery {
   int32 days = 1;
   bool compute_prune_count = 2;
-}
-
-message InviteQuery {
-  bool with_counts = 1;
 }
 
 message OverwriteOptions {
@@ -74,7 +66,7 @@ message EmojiUpdate {
 message GuildUpdate {
   string name = 1;
   string region = 2;
-  VerificationLevel verification_level = 3;
+  int32 verification_level = 3;
   MessageNotification default_message_notifications = 4;
   ExplicitContentFilter explicit_content_filter = 5;
   string afk_channel_id = 6;
@@ -102,10 +94,6 @@ message ChannelInput {
 message PositionInput {
   string id = 1;
   int32 position = 2;
-}
-
-message ChannelPositionInput {
-  repeated PositionInput channels = 1;
 }
 
 message RolePositionInput {

@@ -1,8 +1,12 @@
 syntax = "proto3";
 
 import "channel.proto";
+import "emoji.proto";
 import "guild.proto";
-import "users.proto";
+import "invite.proto";
+import "member.proto";
+import "role.proto";
+import "user.proto";
 import "webhook.proto";
 
 message ReturnMessages {
@@ -52,3 +56,6 @@ message ReturnGuildIntegrations {
 message ReturnVanityCode {
 	string code = 1;
 }
+
+// Literally an empty message
+message Empty {}

@@ -26,13 +26,13 @@ message Guild {
   int32 afk_timeout = 10;
   bool embed_enabled = 11;
   string embed_channel_id = 12;
-  VerificationLevel verification_level = 13;
+  int32 verification_level = 13;
   MessageNotification default_message_notifications = 14;
   ExplicitContentFilter explicit_content_filter = 15;
   repeated Role roles = 16;
   repeated Emoji emojis = 17;
   repeated string features = 18;
-  MFALevel mfa_level = 19;
+  int32 mfa_level = 19;
   string application_id = 20;
   bool widget_enabled = 21;
   string widget_channel_id = 22;
@@ -89,14 +89,6 @@ message Account {
   string name = 2;
 }
 
-enum VerificationLevel {
-  NONE = 0;
-  LOW = 1;
-  MEDIUM = 2;
-  HIGH = 3;
-  VERY_HIGH = 4;
-}
-
 enum MessageNotification {
   ALL_MESSAGES = 0;
   ONLY_MENTIONS = 1;
@@ -106,12 +98,6 @@ enum ExplicitContentFilter {
   DISABLED = 0;
   MEMBERS_WITHOUT_ROLES = 1;
   ALL_MEMBERS = 2;
-}
-
-enum MFALevel {
-  UNKNOWN_SPECIAL_KUBECORD_DEFAULT = 0;
-  NONE = 1;
-  ELEVATED = 2;
 }
 
 message GuildEmbed {

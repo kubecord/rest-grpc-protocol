@@ -48,12 +48,6 @@ message EmbedField {
   int32 width = 7;
 }
 
-message EmbedVideo {
-  string url = 1;
-  int32 height = 2;
-  int32 width = 3;
-}
-
 message Embed {
   string title = 1;
   string type = 2;

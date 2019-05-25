@@ -53,3 +53,15 @@ message InviteOptions {
   bool temporary = 3;
   bool unique = 4;
 }
+
+message EmojiInput {
+  string name = 1;
+  // Base64
+  string image = 2;
+  repeated string roles = 3;
+}
+
+message EmojiUpdate {
+  string name = 1;
+  repeated string roles = 2;
+}

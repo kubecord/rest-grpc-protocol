@@ -59,8 +59,16 @@ service Discord {
   rpc UnpinMessageFromChannel(SnowflakeInput, SnowflakeInput) returns (NullValue);
 
   // Emoji methods
+  // GET /guilds/{guild.id}/emojis
   rpc GetGuildEmojis(SnowflakeInput) returns (ReturnEmojis);
+  // GET /guilds/{guild.id}/emojis/{emoji.id}
   rpc GetGuildEmoji(SnowflakeInput, SnowflakeInput) returns (Emoji);
+  // POST /guilds/{guild.id}/emojis
+  rpc CreateGuildEmoji(SnowflakeInput, EmojiInput) returns (Emoji);
+  // PATCH /guilds/{guild.id}/emojis/{emoji.id}
+  rpc UpdateGuildEmoji(SnowflakeInput, SnowflakeInput, EmojiUpdate) returns (Emoji);
+  // DLEETE /guilds/{guild.id}/emojis/{emoji.id}
+  rpc DeleteGuildEmoji(SnowflakeInput, SnowflakeInput) returns (NullValue);
 
   // Guild methods
   rpc GetGuild(SnowflakeInput) returns (Guild);

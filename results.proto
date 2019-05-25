@@ -48,3 +48,7 @@ message ReturnRoles {
 message ReturnGuildIntegrations {
 	repeated GuildIntegration guild_integrations = 1;
 }
+
+message ReturnVanityCode {
+	string code = 1;
+}

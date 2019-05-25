@@ -1,5 +1,8 @@
 syntax = "proto3";
 
+import "channel.proto";
+import "guild.proto";
+
 message SnowflakeInput {
   string id = 1;
 }
@@ -31,6 +34,7 @@ message GuildMemberQuery {
 
 message PruneCountQuery {
   int32 days = 1;
+  bool compute_prune_count = 2;
 }
 
 message InviteQuery {
@@ -64,4 +68,90 @@ message EmojiInput {
 message EmojiUpdate {
   string name = 1;
   repeated string roles = 2;
+}
+
+message GuildUpdate {
+  string name = 1;
+  string region = 2;
+  VerificationLevel verification_level = 3;
+  MessageNotification default_message_notifications = 4;
+  ExplicitContentFilter explicit_content_filter = 5;
+  string afk_channel_id = 6;
+  int32 afk_timeout = 7;
+  string icon = 8;
+  // Reserve owner_id since bots CAN use this, but rarely if at all
+  reserved 9;
+  string splash = 10;
+  string system_channel_id = 11;
+}
+
+message ChannelInput {
+  string name = 1;
+  ChannelType type = 2;
+  string topic = 3;
+  int32 bitrate = 4;
+  int32 user_limit = 5;
+  int32 rate_limit_per_user = 6;
+  int32 position = 7;
+  repeated PermissionOverwrites permission_overwrites = 8;
+  string parent_id = 9;
+  bool nsfw = 10;
+}
+
+message PositionInput {
+  string id = 1;
+  int32 position = 2;
+}
+
+message ChannelPositionInput {
+  repeated PositionInput channels = 1;
+}
+
+message RolePositionInput {
+  repeated PositionInput roles = 1;
+}
+
+message MemberAddInput {
+  string access_token = 1;
+  string nick = 2;
+  repeated string roles = 3;
+  bool mute = 4;
+  bool deaf = 5;
+}
+
+message MemberInput {
+  string nick = 1;
+  repeated string roles = 2;
+  bool mute = 3;
+  bool deaf = 4;
+  string channel_id = 5;
+}
+
+message NickInput {
+  string nick = 1;
+}
+
+message BanQuery {
+  // Rest manager must convert to delete-message-days
+  int32 delete_message_days = 1;
+  string reason = 2;
+}
+
+message RoleInput {
+  string name = 1;
+  int32 permissions = 2;
+  int32 color = 3;
+  bool hoist = 4;
+  bool mentionable = 5;
+}
+
+message IntegrationCreateInput {
+  string type = 1;
+  string id = 2;
+}
+
+message IntegrationInput {
+  int32 expire_behavior = 1;
+  int32 expire_grace_period = 2;
+  bool enable_emoticons = 3;
 }

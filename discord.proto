@@ -71,17 +71,76 @@ service Discord {
   rpc DeleteGuildEmoji(SnowflakeInput, SnowflakeInput) returns (NullValue);
 
   // Guild methods
+  // GET /guilds/{guild.id}
   rpc GetGuild(SnowflakeInput) returns (Guild);
+  // PATCH /guilds/{guild.id}
+  rpc UpdateGuild(SnowflakeInput, GuildUpdate) returns (Guild);
+  // GET /guilds/{guild.id}/channels
   rpc GetGuildChannels(SnowflakeInput) returns (ReturnChannels);
+  // POST /guilds/{guild.id}/channels
+  rpc CreateGuildChannel(SnowflakeInput, ChannelInput) returns (Channel);
+  // PATCH /guilds/{guild.id}/channels
+  rpc UpdateChannelPositions(SnowflakeInput, ChannelPositionInput) returns (NullValue);
+  // GET /guilds/{guild.id}/members/{user.id}
   rpc GetGuildMember(SnowflakeInput, SnowflakeInput) returns (Member);
+  // GET /guilds/{guild.id}/members
   rpc GetGuildMembers(SnowflakeInput, GuildMemberQuery) returns (ReturnMembers);
+  // PUT /guilds/{guild.id}/members/{user.id} || Special route: Returns 201 with a Member if added or 204 NullValue otherwise
+  rpc PutMemberInGuild(SnowflakeInput, SnowflakeInput, MemberAddInput) returns (Member);
+  // PATCH /guilds/{guild.id}/members/{user.id}
+  rpc UpdateGuildMember(SnowflakeInput, SnowflakeInput, MemberInput) returns (NullValue);
+  // PATCH /guilds/{guild.id}/members/@me/nick
+  rpc UpdateCurrentUserNickname(SnowflakeInput, NickInput) returns (NickInput);
+  // PUT /guilds/{guild.id}/members/{user.id}/roles/{role.id}
+  rpc AddRoleToGuildMember(SnowflakeInput, SnowflakeInput, SnowflakeInput) returns (NullValue);
+  // DELETE /guilds/{guild.id}/members/{user.id}/roles/{role.id}
+  rpc RemoveRoleFromGuildMember(SnowflakeInput, SnowflakeInput, SnowflakeInput) returns (NullValue);
+  // DELETE /guilds/{guild.id}/members/{user.id}
+  rpc KickGuildMember(SnowflakeInput, SnowflakeInput) returns (NullValue);
+  // GET /guilds/{guild.id}/bans
   rpc GetGuildBans(SnowflakeInput) returns (ReturnBanInfos);
+  // GET /guilds/{guild.id}/bans/{user.id}
   rpc GetGuildBan(SnowflakeInput, SnowflakeInput) returns (BanInfo);
+  // PUT /guilds/{guild.id}/bans/{user.id}
+  rpc BanGuildMember(SnowflakeInput, SnowflakeInput, BanQuery) returns (NullValue);
+  // DELETE /guilds/{guild.id}/bans/{user.id}
+  rpc UnbanGuildMember(SnowflakeInput, SnowflakeInput) returns (NullValue);
+  // GET /guilds/{guild.id}/roles
   rpc GetGuildRoles(SnowflakeInput) returns (ReturnRoles);
+  // POST /guilds/{guild.id}/roles
+  rpc CreateGuildRole(SnowflakeInput, RoleInput) returns (Role);
+  // PATCH /guilds/{guild.id}/roles
+  rpc UpdateRolePositions(SnowflakeInput, RolePositionInput) returns (NullValue);
+  // PATCH /guilds/{guild.id}/roles/{role.id}
+  rpc UpdateRole(SnowflakeInput, SnowflakeInput, RoleInput) returns (Role);
+  // DELETE /guilds/{guild.id}/roles/{role.id}
+  rpc DeleteRole(SnowflakeInput, SnowflakeInput) returns (NullValue);
+  // GET /guilds/{guild.id}/prune
   rpc GetGuildPruneCount(SnowflakeInput, PruneCountQuery) returns (PruneCount);
+  // POST /guilds/{guild.id}/prune
+  rpc BeginGuildPrune(SnowflakeInput, PruneCountQuery) returns (PruneCount);
+  // GET /guilds/{guild.id}/regions
   rpc GetGuildRegions(SnowflakeInput) returns (ReturnVoiceRegions);
+  // GET /guilds/{guild.id}/invites
   rpc GetGuildInvites(SnowflakeInput) returns (ReturnInvites);
+  // GET /guilds/{guild.id}/integrations
   rpc GetGuildIntegrations(SnowflakeInput) returns (ReturnGuildIntegrations);
+  // POST /guilds/{guild.id}/integrations
+  rpc CreateGuildIntegration(SnowflakeInput, IntegrationCreateInput) returns (NullValue);
+  // PATCH /guilds/{guild.id}/integrations/{integration.id}
+  rpc UpdateGuildIntegration(SnowflakeInput, IntegrationInput) returns (NullValue);
+  // DELETE /guilds/{guild.id}/integrations/{integration.id}
+  rpc DeleteGuildIntegration(SnowflakeInput, SnowflakeInput) returns (NullValue);
+  // POST /guilds/{guild.id}/integrations/{integration.id}/sync
+  rpc SyncGuildIntegration(SnowflakeInput, SnowflakeInput) returns (NullValue);
+  // GET /guilds/{guild.id}/embed
+  rpc GetGuildEmbed(SnowflakeInput) returns (GuildEmbed);
+  // PATCH /guilds/{guild.id}/embed
+  rpc UpdateGuildEmbed(SnowflakeInput, GuildEmbed) returns (GuildEmbed);
+  // GET /guilds/{guild.id}/vanity-url
+  rpc GetGuildVanityCode(SnowflakeInput) returns (ReturnVanityCode);
+
+  // TODO: Do we implement /guilds/{guild.id}/widget.png and /guilds/{guild.id}/embed.png ?
 
   // Invite
   rpc GetInvite(InviteInput, InviteQuery) returns (Invite);
@@ -89,6 +148,8 @@ service Discord {
   // User methods
   rpc GetUser(SnowflakeInput) returns (User);
   rpc ModifyCurrentUser(User) returns (User);
+  // DELETE /users/@me/guilds/{guild.id}
+  rpc LeaveGuild(SnowflakeInput) returns (NullValue);
 
   // Voice methods
   // GET /voice/regions

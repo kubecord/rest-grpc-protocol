@@ -109,6 +109,12 @@ enum ExplicitContentFilter {
 }
 
 enum MFALevel {
+  UNKNOWN_SPECIAL_KUBECORD_DEFAULT = 0;
   NONE = 1;
   ELEVATED = 2;
+}
+
+message GuildEmbed {
+  bool enabled = 1;
+  string channel_id = 2;
 }

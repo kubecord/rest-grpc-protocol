@@ -140,6 +140,7 @@ enum MessageType {
 }
 
 enum MessageActivityType {
+  UNKNOWN_SPECIAL_KUBECORD_DEFAULT = 0;
   JOIN = 1;
   SPECTATE = 2;
   LISTEN = 3;

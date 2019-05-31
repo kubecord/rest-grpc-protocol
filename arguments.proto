@@ -206,3 +206,8 @@ message ExecuteWebhookArguments {
 message InviteInput {
 	string code = 1;
 }
+
+message AuditLogArguments {
+	SnowflakeInput guild = 1;
+	AuditLogQuery query = 2;
+}

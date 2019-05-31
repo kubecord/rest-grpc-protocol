@@ -177,3 +177,10 @@ message WebhookMessageInput {
 message WebhookMessageQuery {
   bool wait = 1;
 }
+
+message AuditLogQuery {
+	string user_id = 1;
+	int32 action_type = 2;
+	string before = 3;
+	int32 limit = 4;
+}

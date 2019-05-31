@@ -1,6 +1,7 @@
 syntax = "proto3";
 
 import "arguments.proto";
+import "auditlog.proto";
 import "channel.proto";
 import "emoji.proto";
 import "guild.proto";
@@ -140,6 +141,8 @@ service Discord {
   rpc UpdateGuildEmbed(UpdateGuildEmbedArguments) returns (GuildEmbed);
   // GET /guilds/{guild.id}/vanity-url
   rpc GetGuildVanityCode(SnowflakeInput) returns (ReturnVanityCode);
+  // GET /guilds/{guild.id}/audit-logs
+  rpc GetGuildAuditLog(AuditLogArguments) returns (AuditLogResult);
 
   // TODO: Do we implement /guilds/{guild.id}/widget.png and /guilds/{guild.id}/embed.png ?
 

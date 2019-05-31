@@ -1,0 +1,41 @@
+syntax = "proto3";
+
+import "user.proto";
+import "webhook.proto";
+
+message AuditLogResult {
+	repeated Webhook webhooks = 1;
+	repeated User users = 2;
+	repeated AuditLogEntry audit_log_entries = 3;
+}
+
+message AuditLogEntry {
+	string target_id = 1;
+	repeated AuditLogChange changes = 2;
+	string user_id = 3;
+	string id = 4;
+	// https://discordapp.com/developers/docs/resources/audit-log#audit-log-entry-object-audit-log-events
+	int32 action_type = 5;
+	OptionalAuditLogEntryOptions options = 6;
+	string reason = 7;
+}
+
+message OptionalAuditLogEntryOptions {
+	string delete_member_days = 1;
+	string members_removed = 2;
+	string channel_id = 3;
+	string count = 4;
+	string id = 5;
+	string type = 6;
+	string role_name = 7;
+}
+
+/*
+ * The values for each change is a JSON string.
+ * Parsing needs to be done on the worker lib side
+ */
+message AuditLogChange {
+	string new_value = 1;
+	string old_vlaue = 2;
+	string key = 3;
+}

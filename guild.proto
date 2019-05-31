@@ -50,6 +50,8 @@ message Guild {
   string vanity_url_code = 34;
   string description = 35;
   string banner = 36;
+  int32 premium_tier = 37;
+  int32 premium_subscription_count = 38;
 }
 
 message BanInfo {

@@ -9,4 +9,5 @@ message Member {
 	string joined_at = 4;
 	bool deaf = 5;
 	bool mute = 6;
+	int32 premium_since = 7;
 }
